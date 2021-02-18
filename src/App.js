@@ -31,7 +31,7 @@ export default class App extends Component {
   }
 
   sortByProp = property => {
-    let sortedEmployees = this.state.employees;
+    let sortedEmployees = this.state.filteredEmployees;
     sortedEmployees.sort((a,b) => {
       if(a.name[property] < b.name[property]){
         return -1 * this.state.flip[property]
