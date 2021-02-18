@@ -61,7 +61,8 @@ export default class App extends Component {
         <h1 className="text-center">Employee Directory</h1>
         <div className="row">
         <div className=" col-sm-6 offset-sm-3">
-          <input name="search" onChange={this.handleInputChange} value={this.state.search} className="form-control" placeholder="search"/>
+          <i id="searchIcon" className="fas fa-search"></i>
+          <input name="search" onChange={this.handleInputChange} value={this.state.search} className="form-control" placeholder="search by first, last, or email"/>
         </div>
         </div>        
         <table className="table">
@@ -69,8 +70,8 @@ export default class App extends Component {
             <tr>
               <th>Portrait</th>
               <th>Title</th>
-              <th className="link" onClick={() => {this.sortByProp("first")}}>Fist Name <i class="fas fa-sort-down"></i></th>
-              <th className="link" onClick={() => {this.sortByProp("last")}}>Last Name <i class="fas fa-sort-down"></i></th>
+              <th className="link" onClick={() => {this.sortByProp("first")}}>Fist Name <i className="fas fa-sort-down"></i></th>
+              <th className="link" onClick={() => {this.sortByProp("last")}}>Last Name <i className="fas fa-sort-down"></i></th>
               <th>Email</th>
               <th>Cell</th>
             </tr>
