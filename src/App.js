@@ -59,16 +59,18 @@ export default class App extends Component {
     return (
       <div className="container">
         <h1 className="text-center">Employee Directory</h1>
-        <div>
-          <input name="search" onChange={this.handleInputChange} value={this.state.search}/>
+        <div className="row">
+        <div className=" col-sm-6 offset-sm-3">
+          <input name="search" onChange={this.handleInputChange} value={this.state.search} className="form-control" placeholder="search"/>
         </div>
+        </div>        
         <table className="table">
           <thead>
             <tr>
               <th>Portrait</th>
               <th>Title</th>
-              <th className="link" onClick={() => {this.sortByProp("first")}}>Fist Name</th>
-              <th className="link" onClick={() => {this.sortByProp("last")}}>Last Name</th>
+              <th className="link" onClick={() => {this.sortByProp("first")}}>Fist Name <i class="fas fa-sort-down"></i></th>
+              <th className="link" onClick={() => {this.sortByProp("last")}}>Last Name <i class="fas fa-sort-down"></i></th>
               <th>Email</th>
               <th>Cell</th>
             </tr>
