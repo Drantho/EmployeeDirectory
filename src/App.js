@@ -8,7 +8,11 @@ export default class App extends Component {
     employees: [],
     filteredEmployees: [],
     sortBy: "",
-    search: ""
+    search: "",
+    flip: {
+      first: -1,
+      last: 1
+    }
   };
 
   getEmployees = () => {
@@ -17,7 +21,8 @@ export default class App extends Component {
       this.setState({
         employees: results.data.results,
         filteredEmployees: results.data.results
-      })
+      });
+      this.sortByProp("last");
     })
   }
 
@@ -29,16 +34,19 @@ export default class App extends Component {
     let sortedEmployees = this.state.employees;
     sortedEmployees.sort((a,b) => {
       if(a.name[property] < b.name[property]){
-        return -1
+        return -1 * this.state.flip[property]
       } else if(a.name[property] > b.name[property]){
-        return 1
+        return 1 * this.state.flip[property]
       } else{
         return 0
       }
     });
+    const flip = this.state.flip;
+    flip[property] = flip[property] * -1;
     this.setState({
       filteredEmployees: sortedEmployees,
-      sortBy: property
+      sortBy: property,
+      flip: flip
     })
   }
 
@@ -70,8 +78,8 @@ export default class App extends Component {
             <tr>
               <th>Portrait</th>
               <th>Title</th>
-              <th className="link" onClick={() => {this.sortByProp("first")}}>Fist Name <i className="fas fa-sort-down"></i></th>
-              <th className="link" onClick={() => {this.sortByProp("last")}}>Last Name <i className="fas fa-sort-down"></i></th>
+              <th className="link" onClick={() => {this.sortByProp("first")}}>First&nbsp;Name&nbsp;{this.state.flip.first < 0?(<i className="fas fa-sort-down"></i>):(<i className="fas fa-sort-up"></i>)}</th>
+              <th className="link" onClick={() => {this.sortByProp("last")}}>Last&nbsp;Name&nbsp;{this.state.flip.last < 0?(<i className="fas fa-sort-down"></i>):(<i className="fas fa-sort-up"></i>)}</th>
               <th>Email</th>
               <th>Cell</th>
             </tr>
